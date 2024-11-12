@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebAssembly Example</title>
+</head>
+<body>
+  <h1>WebAssembly Example: Add Function</h1>
+  <p id="result">Result will appear here.</p>
+
+  <!-- WebAssembly 모듈 포함 -->
+  <script src="math.js"></script>
+  <script>
+    // WebAssembly 모듈을 로드하고 add 함수 호출
+    Module.onRuntimeInitialized = () => {
+      const add = Module.cwrap('add', 'number', ['number', 'number']);
+      const result = add(10, 20);
+      document.getElementById('result').innerText = `Result: ${result}`;
+    };
+  </script>
+</body>
+</html>
